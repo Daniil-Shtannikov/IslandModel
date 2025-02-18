@@ -26,7 +26,7 @@ public class Location {
     }
     public void addPlant(Plant plant){
         plant.setRow(row);
-        plant.SetColumn(column);
+        plant.setColumn(column);
 
         plants.add(plant);
     }
