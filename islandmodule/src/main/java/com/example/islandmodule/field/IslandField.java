@@ -12,16 +12,17 @@ public class IslandField {
 
 
     private IslandField(){
-        public static IslandField getInstance(){
-            if(instance == null){
-                synchronized (IslandField.class){
-                    if(instance == null){
-                        instance= new IslandField();
-                    }
+    }
+
+    public static IslandField getInstance(){
+        if(instance == null){
+            synchronized (IslandField.class){
+                if(instance == null){
+                    instance= new IslandField();
                 }
             }
-            return instance;
         }
+        return instance;
     }
 
     public void initializedLocations(int numRows, int numColumns){
@@ -42,18 +43,27 @@ public class IslandField {
         }
     }
 
-    public  synchronized Location getLocation(int row, int column){
-        return locations[row][column];
-    }
     public void addAnimal(Animal animal, int row, int column){
+        Location location = getLocation(row,column);
+        location.addAnimal(animal);
+    }
+    public void addPlant(Plant plant, int row, int column){
+        Location location = getLocation(row,column);
+        location.addPlant(plant);
+    }
+
+    public void removeAnimal(Animal animal, int row, int column){
         Location location = getLocation(row,column);
         location.removeAnimal(animal);
     }
-    public void addPlant(Plant plant, int row, int column){
+    public void removePlant(Plant plant, int row, int column){
         Location location = getLocation(row,column);
         location.removePlant(plant);
     }
 
+    public  synchronized Location getLocation(int row, int column){
+        return locations[row][column];
+    }
     public synchronized List<Animal> getAllAnimals(){
         List<Animal> allAnimals = new ArrayList<>();
         for(Location[] row : locations){
@@ -70,7 +80,7 @@ public class IslandField {
                 allPlants.addAll(location.getPlants());
             }
         }
-        return allPlantss;
+        return allPlants;
     }
 
     public int getNumRows() { return numRows; }

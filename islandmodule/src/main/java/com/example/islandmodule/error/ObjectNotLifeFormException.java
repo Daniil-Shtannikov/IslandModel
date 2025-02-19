@@ -1,7 +1,7 @@
 package com.example.islandmodule.error;
 
-public class ObjectNotLifeFormException {
-    public  ObjectNotLifeFormException(String msg){
-        super();
+public class ObjectNotLifeFormException extends Exception {
+    public ObjectNotLifeFormException(String msg){
+        super(msg);
     }
 }
