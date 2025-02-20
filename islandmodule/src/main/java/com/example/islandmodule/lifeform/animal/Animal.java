@@ -115,5 +115,5 @@ public abstract class Animal extends LifeForm {
     }
 
     public abstract double getChanceToEat(String foodName);
-    public abstract void multyply(Animal partner);
+    public abstract void multiply(Animal partner);
 }
