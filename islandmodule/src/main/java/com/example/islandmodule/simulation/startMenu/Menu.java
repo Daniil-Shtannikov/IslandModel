@@ -1,13 +1,13 @@
-package com.example.islandmodule.simulstion.startMenu;
+package com.example.islandmodule.simulation.startMenu;
 
-import field.IslandField;
-import simulation.IslandSimulation;
+import com.example.islandmodule.field.IslandField;
+import com.example.islandmodule.simulation.IslandSimulation;
 
 public class Menu {
     private final Parameters parameters;
 
     public Menu(){
-        psrsmetrs = new Parameters();
+        parametrs = new Parameters();
     }
 
     public void startSimulation(){
