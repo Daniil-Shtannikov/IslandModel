@@ -1,28 +1,13 @@
 package com.example.islandmodule.simulation;
 
-import com.example.islandmodule.*;
 import com.example.islandmodule.field.IslandField;
 import com.example.islandmodule.field.Location;
-import com.example.islandmodule.lifeform.animal.herbivore.Buffalo;
-import com.example.islandmodule.lifeform.animal.herbivore.Caterpillar;
-import com.example.islandmodule.lifeform.animal.herbivore.Deer;
-import com.example.islandmodule.lifeform.animal.herbivore.Duck;
-import com.example.islandmodule.lifeform.animal.herbivore.Goat;
-import com.example.islandmodule.lifeform.animal.herbivore.Herbivore;
-import com.example.islandmodule.lifeform.animal.herbivore.Horse;
-import com.example.islandmodule.lifeform.animal.herbivore.Mouse;
-import com.example.islandmodule.lifeform.animal.herbivore.Rabbit;
-import com.example.islandmodule.lifeform.animal.herbivore.Sheep;
-import com.example.islandmodule.lifeform.animal.herbivore.WildBoar;
-import com.example.islandmodule.lifeform.animal.predator.Bear;
-import com.example.islandmodule.lifeform.animal.predator.Eagle;
-import com.example.islandmodule.lifeform.animal.predator.Fox;
-import com.example.islandmodule.lifeform.animal.predator.Predator;
-import com.example.islandmodule.lifeform.animal.predator.Snake;
-import com.example.islandmodule.lifeform.animal.predator.Wolf;
+import com.example.islandmodule.lifeform.animal.herbivore.*;
+import com.example.islandmodule.lifeform.animal.predator.*;
 import com.example.islandmodule.lifeform.plant.Plant;
 import com.example.islandmodule.simulation.thread.PlantGrowthTask;
 import com.example.islandmodule.simulation.thread.StatisticsTask;
+import com.example.islandmodule.simulation.thread.animalLifecycleTask.AnimalLifecycleTask;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -178,7 +163,7 @@ public class IslandSimulation {
                 int row = random.nextInt(IslandField.getInstance().getNumRows());
                 int column = random.nextInt(IslandField.getInstance().getNumColumns());
                 Location location = IslandField.getInstance().getLocation(row, column);
-                if(location.getAnimals().stream().filter(c -> c.getName().eguals(plant.getName())).toList().size() <= plant.getMaxPopulation()){
+                if(location.getPlants().size() <=plant.getMaxPopulation()){
                     IslandField.getInstance().addPlant(plant, row, column);
                     placed = true;
                 }
