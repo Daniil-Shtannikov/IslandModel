@@ -1,5 +1,7 @@
 package com.example.islandmodule.simulation;
 
+import android.os.Build;
+
 import com.example.islandmodule.field.IslandField;
 import com.example.islandmodule.field.Location;
 import com.example.islandmodule.lifeform.animal.herbivore.*;
@@ -52,7 +54,7 @@ public class IslandSimulation {
 
         AnimalLifecycleTask animalLifecycleTask = new AnimalLifecycleTask();
         PlantGrowthTask plantGrowthTask = new PlantGrowthTask();
-        StatisticsTask statisticsTask = new StatisticsTask();
+        StatisticsTask statisticsTask = new StatisticsTask(animalLifecycleTask.getObjectMultiplyTask(), animalLifecycleTask.getAnimalEatTask(), animalLifecycleTask.getAnimalHpDecreaseTask());
 
         executorService.scheduleAtFixedRate(animalLifecycleTask, 1, 8, TimeUnit.SECONDS);
         executorService.scheduleAtFixedRate(plantGrowthTask, 40, 30, TimeUnit.SECONDS);
@@ -97,9 +99,11 @@ public class IslandSimulation {
                 int row = random.nextInt(IslandField.getInstance().getNumRows());
                 int column = random.nextInt(IslandField.getInstance().getNumColumns());
                 Location location = IslandField.getInstance().getLocation(row, column);
-                if(location.getAnimals().stream().filter(c -> c.getName().eguals(herbivore.getName())).toList().size() <= herbivore.getMaxPopulation()){
-                    IslandField.getInstance().addAnimal(herbivore, row, column);
-                    placed = true;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    if(location.getAnimals().stream().filter(c -> c.getName().equals(herbivore.getName())).toList().size() <= herbivore.getMaxPopulation()) {
+                        IslandField.getInstance().addAnimal(herbivore, row, column);
+                        placed = true;
+                    }
                 }
             }
         }
@@ -139,9 +143,11 @@ public class IslandSimulation {
                 int row = random.nextInt(IslandField.getInstance().getNumRows());
                 int column = random.nextInt(IslandField.getInstance().getNumColumns());
                 Location location = IslandField.getInstance().getLocation(row, column);
-                if(location.getAnimals().stream().filter(c -> c.getName().eguals(predator.getName())).toList().size() <= predator.getMaxPopulation()){
-                    IslandField.getInstance().addAnimal(predator, row, column);
-                    placed = true;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    if(location.getAnimals().stream().filter(c -> c.getName().equals(predator.getName())).toList().size() <= predator.getMaxPopulation()){
+                        IslandField.getInstance().addAnimal(predator, row, column);
+                        placed = true;
+                    }
                 }
             }
         }

@@ -85,4 +85,8 @@ public class IslandField {
 
     public int getNumRows() { return numRows; }
     public int getNumColumns() { return numColumns; }
+
+    public void initializeLocations(int rows, int columns) {
+
+    }
 }

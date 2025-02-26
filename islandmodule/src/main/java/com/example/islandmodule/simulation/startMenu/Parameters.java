@@ -25,6 +25,21 @@ public class Parameters {
         IslandSimulation.getInstance().createIslandModel(countHerbivores, countPredators, countPlants);
     }
 
+    private int changePredatorsSize() {
+        System.out.println("Хотите ли вы изменить количество хищников (25)?");
+        System.out.println("1. Да");
+        System.out.println("2. Нет");
+        System.out.print("Введите номер режима: ");
+        int countPredators = 0;
+        int answer = takeInt(1, 2);
+        if (answer == 1) {
+            System.out.println("Введите желаемое количество хищников от 5 до 500!");
+            System.out.println("Количество хищников:");
+            countPredators = takeInt(5, 500);
+        }
+        return countPredators;
+    }
+
     private void changeIslandSize(){
         System.out.println("Хотите ли вы изменить размер острова (10x4)?");
         System.out.println("0 - Да");

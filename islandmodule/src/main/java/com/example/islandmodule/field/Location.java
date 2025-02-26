@@ -50,10 +50,19 @@ public class Location {
     public List<Plant> getPlants(){
         return plants;
     }
+
+    public List<LifeForm> getLifeForms() {
+        List<LifeForm> lifeForms = new ArrayList<>();
+        lifeForms.addAll(animals);
+        lifeForms.addAll(plants);
+        return lifeForms;
+    }
+
     public int getRow(){
         return row;
     }
     public int getColumn(){
         return column;
     }
+
 }
